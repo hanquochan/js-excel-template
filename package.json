@@ -1,6 +1,6 @@
 {
   "name": "excel-template-generator",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "A js excel template used in browser or nodejs environment.",
   "main": "nodejs/nodejs.js",
   "module": "browser/browser.js",
