@@ -2,6 +2,13 @@ import * as ExcelJS from 'exceljs'
 
 export default class JsExcelTemplateBase {
   protected workbook = new ExcelJS.Workbook()
+  private openTag = "{";
+  private closeTag = "}";
+
+  public setTag(openTag: string, closeTag: string) {
+    this.openTag = openTag;
+    this.closeTag = closeTag;
+  }
 
   public set(name: string, value: ExcelTemplateValue, options?: Partial<{
     duplicateCellIfArray: boolean
@@ -24,7 +31,7 @@ export default class JsExcelTemplateBase {
                   rowDuplicated = true
                 }
                 for (let i = 0; i < value.length; i++) {
-                  this.setCell(row.getCell(columnIndex + i), `{${name}.${fieldName}}`, value[i][fieldName])
+                  this.setCell(row.getCell(columnIndex + i), `${this.openTag}${name}.${fieldName}${this.closeTag}`, value[i][fieldName])
                 }
               } else {
                 if (!rowDuplicated) {
@@ -34,7 +41,7 @@ export default class JsExcelTemplateBase {
                   rowDuplicated = true
                 }
                 for (let i = 0; i < value.length; i++) {
-                  this.setCell(sheet.getRow(rowIndex + i).getCell(columnIndex), `{${name}.${fieldName}}`, value[i][fieldName])
+                  this.setCell(sheet.getRow(rowIndex + i).getCell(columnIndex), `${this.openTag}${name}.${fieldName}${this.closeTag}`, value[i][fieldName])
                 }
               }
             }
@@ -57,7 +64,7 @@ export default class JsExcelTemplateBase {
       for (const sheet of this.workbook.worksheets) {
         sheet.eachRow((row) => {
           row.eachCell((cell) => {
-            this.setCell(cell, `{${name}}`, value)
+            this.setCell(cell, `${this.openTag}${name}${this.closeTag}`, value)
           })
         })
       }
@@ -72,11 +79,11 @@ export default class JsExcelTemplateBase {
     const fieldNames: string[] = []
     let position = 0
     while (position >= 0 && position < text.length) {
-      const index = text.indexOf(`{${name}.`, position)
+      const index = text.indexOf(`${this.openTag}${name}.`, position)
       if (index >= 0) {
-        const endIndex = text.indexOf('}', index + `{${name}.`.length)
+        const endIndex = text.indexOf(this.closeTag, index + `${this.openTag}${name}.`.length)
         if (endIndex >= 0) {
-          fieldNames.push(text.substring(index + `{${name}.`.length, endIndex))
+          fieldNames.push(text.substring(index + `${this.openTag}${name}.`.length, endIndex))
           position = endIndex
         } else {
           break
