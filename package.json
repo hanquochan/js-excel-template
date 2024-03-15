@@ -1,11 +1,11 @@
 {
-  "name": "js-excel-template",
-  "version": "3.0.2",
+  "name": "excel-template-generator",
+  "version": "3.0.4",
   "description": "A js excel template used in browser or nodejs environment.",
   "main": "nodejs/nodejs.js",
   "module": "browser/browser.js",
-  "unpkg": "js-excel-template.min.js",
-  "jsdelivr": "js-excel-template.min.js",
+  "unpkg": "excel-template-generator.min.js",
+  "jsdelivr": "excel-template-generator.min.js",
   "scripts": {
     "build": "clean-scripts build",
     "lint": "clean-scripts lint",
@@ -15,17 +15,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plantain-00/js-excel-template.git"
+    "url": "git+https://github.com/hanquochan/js-excel-template.git"
   },
   "author": "York Yao",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/plantain-00/js-excel-template/issues"
+    "url": "https://github.com/hanquochan/js-excel-template/issues"
   },
   "typeCoverage": {
     "atLeast": 99.27
   },
-  "homepage": "https://github.com/plantain-00/js-excel-template#readme",
+  "homepage": "https://github.com/hanquochan/js-excel-template#readme",
   "devDependencies": {
     "@microsoft/api-extractor": "7.33.6",
     "@rollup/plugin-node-resolve": "15.0.1",

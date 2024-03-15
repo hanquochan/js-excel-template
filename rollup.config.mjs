@@ -6,7 +6,7 @@ export default {
   plugins: [resolve({ browser: true }), uglify()],
   output: {
     name: 'JsExcelTemplate',
-    file: 'dist/js-excel-template.min.js',
+    file: 'dist/excel-template-generator.min.js',
     format: 'umd',
     globals: {
       exceljs: 'ExcelJS'
